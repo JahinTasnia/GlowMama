@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pregnancy Support Website</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<script defer src="script.js"></script>
+</head>
+<body>
+	<header class="site-header">
+		<nav class="navbar">
+			<div class="logo">GlowMama</div>
+			<ul class="nav-links">
+				<li><a href="home.html">Home</a></li>
+				<li><a href="calculator.html">Calculator</a></li>
+				<li><a href="tracker.html">Tracker</a></li>
+				<li><a href="community.html">Community</a></li>
+				<li><a href="education.html">Education</a></li>
+				<li><a href="birth-plan.html">Birth Plan</a></li>
+				<li><a href="tools.html">Tools</a></li>
+				<li><a href="emergency.html">Emergency</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<section class="hero" id="home">
+		<div class="hero-content">
+			<h1>Welcome to GlowMama</h1>
+			<p>Your colourful, supportive companion for every step of your pregnancy journey.</p>
+			<a href="calculator.html" class="cta-btn">Calculate Your Due Date</a>
+		</div>
+		<div class="hero-image">
+			<img src="https://images.healthshots.com/healthshots/en/uploads/2022/05/12104033/pregnancy-1-1600x900.jpg" alt="Pregnancy illustration">
+		</div>
+	</section>
+
+    <!-- Due Date Calculator Section -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <h2>Due Date Calculator</h2>
+            <div class="calculator-form">
+                <label for="lmp">First day of last menstrual period:</label>
+                <input type="date" id="lmp" required>
+                <button onclick="calculateDueDate()">Calculate Due Date</button>
+                <div id="due-date-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pregnancy Tracker Section -->
+    <section class="tracker" id="tracker">
+        <div class="container">
+            <h2>Pregnancy Progress Tracker</h2>
+            <div class="tracker-dashboard">
+                <div class="week-display">
+                    <h3>Your Pregnancy Week</h3>
+                    <div id="current-week">Week 0</div>
+                    <button onclick="updateWeek()">Update Week</button>
+                </div>
+                <div class="baby-growth">
+                    <h3>Baby's Development</h3>
+                    <div id="baby-info">Enter your pregnancy week to see baby's development</div>
+                </div>
+                <div class="kick-counter">
+                    <h3>Kick Counter</h3>
+                    <button onclick="countKick()">Record Kick</button>
+                    <div id="kick-count">Today's kicks: 0</div>
+                    <button onclick="resetKicks()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contraction Timer -->
+    <section class="contraction-timer">
+        <div class="container">
+            <h2>Contraction Timer</h2>
+            <div class="timer-controls">
+                <button id="start-contraction" onclick="startContraction()">Start Contraction</button>
+                <button id="end-contraction" onclick="endContraction()" disabled>End Contraction</button>
+                <div id="contraction-log"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health & Wellness -->
+    <section class="health-wellness">
+        <div class="container">
+            <h2>Health & Wellness</h2>
+            <div class="wellness-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'nutrition')">Nutrition</button>
+                    <button class="tab-btn" onclick="openTab(event, 'exercise')">Exercise</button>
+                    <button class="tab-btn" onclick="openTab(event, 'mental-health')">Mental Health</button>
+                    <button class="tab-btn" onclick="openTab(event, 'symptoms')">Symptoms</button>
+                </div>
+                <div id="nutrition" class="tab-content active">
+                    <h3>Nutrition Guide</h3>
+                    <ul>
+                        <li>Folic acid: 400-800 mcg daily</li>
+                        <li>Iron: 27 mg daily</li>
+                        <li>Calcium: 1000 mg daily</li>
+                        <li>Protein: 70-100g daily</li>
+                    </ul>
+                </div>
+                <div id="exercise" class="tab-content">
+                    <h3>Safe Exercise Recommendations</h3>
+                    <ul>
+                        <li>Walking: 30 minutes daily</li>
+                        <li>Swimming: Low-impact cardio</li>
+                        <li>Prenatal yoga: Flexibility and relaxation</li>
+                        <li>Pelvic floor exercises</li>
+                    </ul>
+                </div>
+                <div id="mental-health" class="tab-content">
+                    <h3>Mental Health Support</h3>
+                    <ul>
+                        <li>Practice mindfulness and meditation</li>
+                        <li>Join support groups</li>
+                        <li>Talk to a counselor</li>
+                        <li>Maintain social connections</li>
+                    </ul>
+                </div>
+                <div id="symptoms" class="tab-content">
+                    <h3>Common Pregnancy Symptoms</h3>
+                    <ul>
+                        <li>Morning sickness: Usually improves by second trimester</li>
+                        <li>Fatigue: Rest when possible</li>
+                        <li>Back pain: Use proper posture</li>
+                        <li>Heartburn: Eat smaller, frequent meals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <h2>Community Support</h2>
+            <div class="community-features">
+                <div class="forum">
+                    <h3>Discussion Forum</h3>
+                    <div class="forum-posts">
+                        <div class="post">
+                            <h4>First Time Mom Questions</h4>
+                            <p>Share your experiences and get advice from other moms...</p>
+                            <button onclick="joinDiscussion()">Join Discussion</button>
+                        </div>
+                        <div class="post">
+                            <h4>Healthy Pregnancy Tips</h4>
+                            <p>What are your best tips for a healthy pregnancy?</p>
+                            <button onclick="joinDiscussion()">Join Discussion</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="support-groups">
+                    <h3>Support Groups</h3>
+                    <button onclick="joinGroup('first-time')">First-Time Moms</button>
+                    <button onclick="joinGroup('high-risk')">High-Risk Pregnancies</button>
+                    <button onclick="joinGroup('multiples')">Expecting Multiples</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Content -->
+    <section class="education">
+        <div class="container">
+            <h2>Educational Resources</h2>
+            <div class="education-grid">
+                <div class="resource-card">
+                    <h3>Articles & Blogs</h3>
+                    <p>Read the latest pregnancy advice and tips</p>
+                    <button onclick="viewResources('articles')">Read Articles</button>
+                </div>
+                <div class="resource-card">
+                    <h3>Video Library</h3>
+                    <p>Watch educational videos about pregnancy</p>
+                    <button onclick="viewResources('videos')">Watch Videos</button>
+                </div>
+                <div class="resource-card">
+                    <h3>Podcasts</h3>
+                    <p>Listen to expert interviews and stories</p>
+                    <button onclick="viewResources('podcasts')">Listen Now</button>
+                </div>
+                <div class="resource-card">
+                    <h3>Webinars</h3>
+                    <p>Join live sessions with experts</p>
+                    <button onclick="viewResources('webinars')">Join Webinar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Birth Plan -->
+    <section class="birth-plan">
+        <div class="container">
+            <h2>Birth Plan & Preparation</h2>
+            <div class="birth-plan-form">
+                <h3>Create Your Birth Plan</h3>
+                <form id="birthPlanForm">
+                    <div class="form-group">
+                        <label>Preferred Birth Environment:</label>
+                        <select name="birthEnvironment">
+                            <option value="hospital">Hospital</option>
+                            <option value="birthing-center">Birthing Center</option>
+                            <option value="home">Home Birth</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pain Relief Preferences:</label>
+                        <input type="checkbox" name="painRelief" value="epidural"> Epidural
+                        <input type="checkbox" name="painRelief" value="natural"> Natural
+                        <input type="checkbox" name="painRelief" value="nitrous"> Nitrous Oxide
+                    </div>
+                    <button type="button" onclick="saveBirthPlan()">Save Birth Plan</button>
+                </form>
+            </div>
+            <div class="hospital-bag">
+                <h3>Hospital Bag Checklist</h3>
+                <div class="checklist">
+                    <label><input type="checkbox"> Comfortable nightgowns</label>
+                    <label><input type="checkbox"> Nursing bras</label>
+                    <label><input type="checkbox"> Going home outfit</label>
+                    <label><input type="checkbox"> Baby's first outfit</label>
+                    <label><input type="checkbox"> Important documents</label>
+                    <label><input type="checkbox"> Phone charger</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Tools -->
+    <section class="interactive-tools">
+        <div class="container">
+            <h2>Interactive Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Pregnancy Quiz</h3>
+                    <p>Test your pregnancy knowledge</p>
+                    <button onclick="startQuiz()">Start Quiz</button>
+                </div>
+                <div class="tool-card">
+                    <h3>Baby Name Generator</h3>
+                    <input type="text" id="namePreference" placeholder="Enter preferences">
+                    <button onclick="generateName()">Generate Names</button>
+                    <div id="name-suggestions"></div>
+                </div>
+                <div class="tool-card">
+                    <h3>Appointment Calendar</h3>
+                    <input type="date" id="appointmentDate">
+                    <input type="text" id="appointmentType" placeholder="Appointment type">
+                    <button onclick="addAppointment()">Add Appointment</button>
+                    <div id="appointment-list"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner's Corner -->
+    <section class="partners-corner">
+        <div class="container">
+            <h2>Partner's Corner</h2>
+            <div class="partner-content">
+                <h3>Supporting Your Partner</h3>
+                <ul>
+                    <li>Attend prenatal appointments together</li>
+                    <li>Help with household chores</li>
+                    <li>Learn about labor and delivery</li>
+                    <li>Practice relaxation techniques together</li>
+                </ul>
+                <button onclick="viewPartnerGuide()">View Complete Guide</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Resources -->
+    <section class="emergency">
+        <div class="container">
+            <h2>Emergency Resources</h2>
+            <div class="emergency-contacts">
+                <div class="contact-card urgent">
+                    <h3>Emergency Services</h3>
+                    <p>Call 911 for immediate medical emergencies</p>
+                    <button onclick="callEmergency()">Emergency Call</button>
+                </div>
+                <div class="contact-card">
+                    <h3>Pregnancy Helpline</h3>
+                    <p>24/7 support: 1-800-PREGNANCY</p>
+                </div>
+                <div class="contact-card">
+                    <h3>Mental Health Crisis</h3>
+                    <p>Crisis Text Line: Text HOME to 741741</p>
+                </div>
+            </div>
+        </div>
+    </section>	
+
+    <!-- Footer Start -->
+
+    <div class="container-fluid footer-nyb text-light pt-5 mt-5">
+            <div class="container py-5">
+            <div class="row footer-cols">
+            <!-- Brand & Intro -->
+            <div class="footer-col brand">
+                <h2 class="mb-3">GlowMama</h2>
+                <p>Thank you for choosing GlowMama! We look forward to assisting you and enhancing your pregnancy journey experience.</p>
+                <div class="socials">
+                <a class="btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn-social" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="btn-social" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="btn-social" href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn-social" href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Tools -->
+            <div class="footer-col">
+                <h5>Tools</h5>
+                <a class="footer-link" href="#calculator">Due Date Calculator</a>
+                <a class="footer-link" href="#tracker">Progress Tracker</a>
+                <a class="footer-link" href="#contraction-timer">Contraction Timer</a>
+                <a class="footer-link" href="#interactive-tools">Baby Name Generator</a>
+                <a class="footer-link" href="#birth-plan">Birth Plan</a>
+            </div>
+
+            <!-- Resources -->
+            <div class="footer-col">
+                <h5>Resources</h5>
+                <a class="footer-link" href="#education">Articles & Blogs</a>
+                <a class="footer-link" href="#health-wellness">Health Guide</a>
+                <a class="footer-link" href="#education">Video Library</a>
+                <a class="footer-link" href="#partners-corner">Partner's Guide</a>
+                <a class="footer-link" href="#education">Webinars</a>
+            </div>
+
+            <!-- Support -->
+            <div class="footer-col">
+                <h5>Support</h5>
+                <a class="footer-link" href="#community">Community Forum</a>
+                <a class="footer-link" href="#community">Support Groups</a>
+                <a class="footer-link" href="#emergency">Emergency Help</a>
+                <a class="footer-link" href="#contact">Expert Q&A</a>
+                <a class="footer-link" href="#contact">Chat Support</a>
+            </div>
+
+            <!-- Connect -->
+            <div class="footer-col">
+                <h5>Connect</h5>
+                <a class="footer-link" href="#contact">Contact Us</a>
+                <a class="footer-link" href="#about">About Us</a>
+                <a class="footer-link" href="#careers">Careers</a>
+                <a class="footer-link" href="#newsletter">Newsletter</a>
+                <a class="footer-link" href="#feedback">Feedback</a>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+            <p class="mb-0">
+                © 2025 <strong>PregnancyCare</strong> • All Rights Reserved •
+                <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a>
+            </p>
+            </div>
+        </div>
+    </div>
+
+<!-- Footer End -->
+
+
+
+   
+
+</body>
+</html>
